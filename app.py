@@ -17,6 +17,8 @@ if db_url:
         db_url = db_url.replace("postgres://", "postgresql://", 1)
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 else:
+    
+    db_path = os.path.join(basedir, 'medicinestest.db')
     # Render မှာဖြစ်စေ၊ Windows မှာဖြစ်စေ Database ဖိုင်ကို အမြဲရှာတွေ့စေမည့် Path
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'medicinestest.db')
 
