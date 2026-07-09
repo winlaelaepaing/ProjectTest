@@ -59,6 +59,7 @@ def upload_image():
         img = Image.open(file).convert('L')
         img = ImageEnhance.Contrast(img).enhance(2)
         text = pytesseract.image_to_string(img)
+        print(f"OCR ဖတ်လို့ရတဲ့စာသား {text}")
         
         # Database ထဲမှာ ရှာမယ်
         for word in text.split():
