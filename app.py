@@ -57,8 +57,10 @@ def upload_image():
         
         # Database Search
         # သင့်စက်ထဲက Database ဖိုင်လမ်းကြောင်းအမှန်ကို ထည့်ပါ
-        db_path = r'C:\NewProjects\my_new_medicine_app\Backend_Python\medicinestest.db'
+        # အောက်ပါအတိုင်း အစားထိုးပါ
+        db_path = os.path.join(basedir, 'medicinestest.db')
         conn = sqlite3.connect(db_path)
+
         cursor = conn.cursor()
         
         found_data = None
