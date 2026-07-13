@@ -1,4 +1,5 @@
-FROM python:3.9-slim
+# အရင်က python:3.9-slim ကို 3.11-slim လို့ ပြင်လိုက်ပါ
+FROM python:3.11-slim
 
 # Tesseract ကို သွင်းမယ်
 RUN apt-get update && apt-get install -y \
