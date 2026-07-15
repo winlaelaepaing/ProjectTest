@@ -50,6 +50,7 @@ def upload_image():
         # Image Preprocessing
         img = Image.open(file).convert('L')
         img = ImageEnhance.Contrast(img).enhance(2)
+        ImageEnhance.Sharpness(img).enhance(2)
         
         # OCR
         text = pytesseract.image_to_string(img)
@@ -66,7 +67,8 @@ def upload_image():
         found_data = None
         for word in text.split():
             if len(word) > 3:
-                cursor.execute("SELECT name, category, description, usage FROM medicines WHERE name LIKE ?", ('%' + word.lower() + '%',))
+                # အောက်ပါအတိုင်း ပြင်ရေးပါ
+                cursor.execute("SELECT name, category, description, usage FROM medicines WHERE LOWER(name) LIKE LOWER(?)", ('%' + word + '%',))
                 row = cursor.fetchone()
                 if row:
                     found_data = {"name": row[0], "category": row[1], "description": row[2], "usage": row[3]}
