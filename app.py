@@ -68,8 +68,11 @@ def upload_image():
         for word in text.split():
             if len(word) > 3:
                 # အောက်ပါအတိုင်း ပြင်ရေးပါ
-                cursor.execute("SELECT name, category, description, usage FROM medicines WHERE LOWER(name) LIKE LOWER(?)", ('%' + word + '%',))
+                #cursor.execute("SELECT name, category, description, usage FROM medicines WHERE LOWER(name) LIKE LOWER(?)", ('%' + word + '%',))
+                cursor.execute("SELECT name, category, description, usage FROM medicines WHERE LOWER(name) = ?", (word.lower(),))
                 row = cursor.fetchone()
+
+
                 if row:
                     found_data = {"name": row[0], "category": row[1], "description": row[2], "usage": row[3]}
                     break
